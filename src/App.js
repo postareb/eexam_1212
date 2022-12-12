@@ -27,7 +27,7 @@ const App = () => {
         {data.length > 0 &&
           data.map((character) => <Character character={character} />)}
 
-        {/* subscribeSection && */ <Subscription />}
+        {subscribeSection && <Subscription />}
       </div>
     </div>
   );
