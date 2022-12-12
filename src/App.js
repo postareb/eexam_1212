@@ -5,15 +5,18 @@ import "./App.css";
 
 const App = () => {
   const [data, setData] = useState([]);
+  const [subscribeSection, setSubscribeSection] = useState(false);
 
   useEffect(() => {
     const dataFetch = async () => {
       const response = await (
         await fetch("https://demoapi.com/api/series/howimetyourmother")
       ).json();
-      console.log(response);
       setData(response);
     };
+    setTimeout(() => {
+      setSubscribeSection(true);
+    }, "10000");
 
     dataFetch();
   }, []);
@@ -21,19 +24,10 @@ const App = () => {
   return (
     <div>
       <div id="frame">
-        <div className="main">
-          {data.map((character) => {
-            return (
-              <div className="charProfile">
-                <div>Character name: {character.name}</div>
-                <div>Details: {character.details}</div>
-              </div>
-            );
-          })}
-        </div>
+        {data.length > 0 &&
+          data.map((character) => <Character character={character} />)}
 
-        <Character />
-        <Subscription />
+        {/* subscribeSection && */ <Subscription />}
       </div>
     </div>
   );

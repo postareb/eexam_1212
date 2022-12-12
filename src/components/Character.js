@@ -1,11 +1,19 @@
 import { useState } from "react";
-import { useEffect } from "react";
 
-const Character = () => {
+const Character = ({ character }) => {
+  const [showMore, setShowMore] = useState(false);
+  if (!character) {
+    return null;
+  }
   return (
     <>
-      (data.length && data.map(character=>
-      <Character character={character} />)
+      <div className="charProfile">
+        <div>Character name: {character.name}</div>
+        <button onClick={() => setShowMore(!showMore)}>
+          {showMore ? "Show Less" : "Show More"}
+        </button>
+        {showMore && <div>Details: {character.details}</div>}
+      </div>
     </>
   );
 };
